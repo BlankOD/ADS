@@ -23,10 +23,10 @@ int main(int argc, char *argv[]) {
   char word[LENGTH + 1] = "";
 
   // step 1: read in the dictionary
-  dict *dictionary = newEmptyDict();
+  Trie dictionary = newEmptyDict();
   while (scanf("%45s",word) && word[0] != '!') {
     trimWord(word);
-    addWord(word,dictionary);
+    addWord(dictionary, word);
   }
 
   // step 2: read in text
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
     }else{
       word[index] = '\0';
       //printf("Word input: %s\n", word);
-      if (index && !check(word,dictionary)) {
+      if (index && !check(dictionary, word)) {
         counter++;
         printf("%s\n",word);
       }

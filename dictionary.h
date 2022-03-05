@@ -7,17 +7,19 @@
 
 // maximum length for a word
 #define LENGTH 45
+#define ALPHABETLENGTH 26
 
-// a dictionary is an array
-typedef struct dict {
-  int numWords;
-  int maxWords;
-  char **words;
-} dict;
+typedef struct TrieNode* Trie;
 
-dict *newEmptyDict();
-void addWord(char word[LENGTH + 1], dict *d);
-bool check(const char *word, dict *d);
-void freeDict(dict *n);
+struct TrieNode {
+  bool endNode;
+  char letter;
+  Trie children [26];
+};
+
+Trie newEmptyDict();
+Trie addWord(Trie root, char word[LENGTH + 1]);
+bool check(Trie tr, const char *word);
+void freeDict(Trie tr);
 
 #endif // DICTIONARY_H
